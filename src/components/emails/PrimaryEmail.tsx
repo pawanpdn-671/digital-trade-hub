@@ -14,7 +14,7 @@ export const EmailTemplate = ({ actionLabel, buttonText, href }: EmailTemplatePr
 			<Body style={main}>
 				<Container style={container}>
 					<Img
-						src={`${process.env.NEXT_PUBLIC_SERVER_URL}/hippo-newsletter-sign-up.png`}
+						src={`${process.env.NEXT_PUBLIC_SERVER_URL}/logo.svg`}
 						width="150"
 						height="150"
 						alt="DigitalTradeHub"
