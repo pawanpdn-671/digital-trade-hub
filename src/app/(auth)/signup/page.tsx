@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import {toast} from 'sonner';
+import { toast } from "sonner";
 import { ZodError } from "zod";
 
 const Page = () => {
@@ -26,21 +26,21 @@ const Page = () => {
 	const router = useRouter();
 
 	const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
-		onError: err => {
-			if(err.data?.code === 'CONFLICT'){
-				toast.error("This email is already in use. Sign in instead?")
-				return
+		onError: (err) => {
+			if (err.data?.code === "CONFLICT") {
+				toast.error("This email is already in use. Sign in instead?");
+				return;
 			}
-			if(err instanceof ZodError){
-				toast.error(err.issues[0]?.message)
-				return
+			if (err instanceof ZodError) {
+				toast.error(err.issues[0]?.message);
+				return;
 			}
-			toast.error('Something went wrong, Please try again.')
+			toast.error("Something went wrong, Please try again.");
 		},
-		onSuccess: ({sentToEmail}) => {
-			toast.success(`Verification email sent to ${sentToEmail}.`)
-			router.push('/verify-email?to=' + sentToEmail)
-		}
+		onSuccess: ({ sentToEmail }) => {
+			toast.success(`Verification email sent to ${sentToEmail}.`);
+			router.push("/verify-email?to=" + sentToEmail);
+		},
 	});
 
 	const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
@@ -66,6 +66,10 @@ const Page = () => {
 					</div>
 
 					<div className="grid gap-6">
+						<pre className="">
+							login_id - pawanpradhanpc671@gmail.com
+							<pre>password - testing123</pre>
+						</pre>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className="grid gap-2">
 								<div className="grid gap-1 py-2">
@@ -78,9 +82,7 @@ const Page = () => {
 										})}
 										placeholder="you@example.com"
 									/>
-									{errors?.email && (
-										<p className="text-sm text-red-500">{errors?.email?.message}</p>
-									)}
+									{errors?.email && <p className="text-sm text-red-500">{errors?.email?.message}</p>}
 								</div>
 								<div className="grid gap-1 py-2">
 									<Label htmlFor="password">Password</Label>
@@ -93,9 +95,7 @@ const Page = () => {
 										})}
 										placeholder="Password"
 									/>
-									{errors?.password && (
-										<p className="text-sm text-red-500">{errors?.password?.message}</p>
-									)}
+									{errors?.password && <p className="text-sm text-red-500">{errors?.password?.message}</p>}
 								</div>
 								<Button>Sign up</Button>
 							</div>

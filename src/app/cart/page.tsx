@@ -32,8 +32,6 @@ const Page = () => {
 	const cartTotal = items.reduce((total, { product }) => total + product.price, 0);
 	const fee = 1;
 
-	console.log(process.env.STRIPE_SECRET_KEY);
-
 	return (
 		<div className="bg-white">
 			<div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -161,6 +159,7 @@ const Page = () => {
 							</div>
 						</div>
 						<div className="mt-6">
+							<pre>use card no. 4242424242424242</pre>
 							<Button
 								onClick={() => createCheckoutSession({ productIds })}
 								className="w-full"

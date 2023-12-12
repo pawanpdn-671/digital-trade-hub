@@ -82,6 +82,11 @@ const Page = () => {
 					</div>
 
 					<div className="grid gap-6">
+						<pre className="">
+							login_id - pawanpradhanpc671@gmail.com
+							<pre>password - testing123</pre>
+						</pre>
+
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className="grid gap-2">
 								<div className="grid gap-1 py-2">
