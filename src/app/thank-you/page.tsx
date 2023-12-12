@@ -44,25 +44,26 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
 	}, 0);
 
 	return (
-		<main className="relative lg:min-h-full sm:pt-20 sm:flex">
-			<div className="hidden md:block h-80 overflow-hidden lg:absolute lg:h-full lg:w-1/2 lg:pr-4 xl:pr-12">
+		<main className="relative lg:min-h-full pt-20">
+			<div className="w-full flex justify-center">
 				<Image
-					fill
 					src="/thank-you.svg"
-					className="h-full w-full object-cover object-center"
-					alt="thank you for the order"
+					className="w-[250px] sm:w-[300px] h-auto"
+					width={50}
+					height={50}
+					alt="thank you for your order"
 				/>
 			</div>
 
 			<div>
-				<div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-32 xl:gap-x-24">
-					<div className="lg:col-start-2">
-						<p className="text-sm font-medium text-violet-600">Order Successful</p>
-						<h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+				<div className="mx-auto px-4 py-10 max-w-full sm:max-w-2xl">
+					<div>
+						<p className="text-center text-lg font-medium text-violet-600">Order Successful</p>
+						<h1 className="text-center mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
 							Thanks for ordering
 						</h1>
 						{order._isPaid ? (
-							<p className="mt-2 text-base text-muted-foreground">
+							<p className="mt-2 text-center text-base text-muted-foreground">
 								{" "}
 								Your order was processed and your assets are available to download below. We&apos;ve sent your
 								receipt and order details to{" "}
@@ -71,7 +72,7 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
 								) : null}{" "}
 							</p>
 						) : (
-							<p className="mt-2 text-base text-muted-foreground">
+							<p className="text-center mt-2 text-base text-muted-foreground">
 								We appreciate your order, and we&apos;re currently processing it. So hang tight and we&apos;ll
 								send you confirmation very soon!
 							</p>

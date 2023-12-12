@@ -4,6 +4,8 @@ import { Product } from "@/payload-types";
 import { trpc } from "@/trpc/client";
 import Link from "next/link";
 import ProductListing from "./ProductListing";
+import React from "react";
+import Image from "next/image";
 
 interface ProductReelProps {
 	title: string;
@@ -12,6 +14,26 @@ interface ProductReelProps {
 	query: TQueryValidator;
 }
 const FALLBACK_LIMIT = 4;
+
+const EmptyProducts = () => {
+	return (
+		<div>
+			<div className="w-full flex justify-center">
+				<Image
+					src="/empty.svg"
+					className="w-200 sm:w-[400px] h-auto"
+					width={50}
+					height={50}
+					alt="empty product image"
+				/>
+			</div>
+			<p className="text-center mt-10 text-xl font-medium text-muted-foreground">No Products Found!</p>
+			<Link href="/products" className="mt-8 block text-center text-violet-600 text-lg font-semibold">
+				Checkout other products &rarr;
+			</Link>
+		</div>
+	);
+};
 
 const ProductReel = (props: ProductReelProps) => {
 	const { title, subtitle, href, query } = props;
@@ -36,8 +58,6 @@ const ProductReel = (props: ProductReelProps) => {
 		map = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
 	}
 
-	console.log("data", data);
-
 	return (
 		<section className="py-12">
 			<div className="md:flex md:items-center md: justify-between mb-4">
@@ -60,6 +80,7 @@ const ProductReel = (props: ProductReelProps) => {
 					</div>
 				</div>
 			</div>
+			{products?.length === 0 && <EmptyProducts />}
 		</section>
 	);
 };
