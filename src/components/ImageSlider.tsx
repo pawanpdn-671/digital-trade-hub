@@ -72,6 +72,7 @@ const ImageSlider = ({ urls }: ImageSliderProps) => {
 						return `<span class="rounded-full transition ${className}"></span>`;
 					},
 				}}
+				allowTouchMove={true}
 				onSwiper={(swiper) => setSwiper(swiper)}
 				spaceBetween={50}
 				modules={[Pagination]}

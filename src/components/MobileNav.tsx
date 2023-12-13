@@ -1,16 +1,20 @@
 "use client";
 
 import { PRODUCT_CATEGORIES } from "@/config";
+import { User } from "../payload-types";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "./ui/button";
 
-const MobileNav = () => {
+const MobileNav = ({ user }: { user: User | null }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const pathname = usePathname();
+	const { signOut } = useAuth();
 
 	// whenever we click an item in the menu and navigate away, we want to close the menu
 	useEffect(() => {
@@ -59,6 +63,14 @@ const MobileNav = () => {
 							</button>
 						</div>
 
+						{user ? (
+							<div className="pt-8 px-2">
+								<p className="font-medium py-4 text-sm text-black">{user.email}</p>
+
+								<Link href="/sell">Seller Dashboard</Link>
+							</div>
+						) : null}
+
 						<div className="mt-2">
 							<ul>
 								{PRODUCT_CATEGORIES.map((category) => (
@@ -93,24 +105,33 @@ const MobileNav = () => {
 							</ul>
 						</div>
 
-						<div className="space-y-6 border-t border-gray-200 px-4 py-6">
-							<div className="flow-root">
-								<Link
-									onClick={() => closeOnCurrent("/login")}
-									href="/login"
-									className="-m-2 block p-2 font-medium text-gray-900">
-									Sign in
-								</Link>
+						{!user && (
+							<div className="space-y-6 border-t border-gray-200 px-4 py-6">
+								<div className="flow-root">
+									<Link
+										onClick={() => closeOnCurrent("/login")}
+										href="/login"
+										className="-m-2 block p-2 font-medium text-gray-900">
+										Sign in
+									</Link>
+								</div>
+								<div className="flow-root">
+									<Link
+										onClick={() => closeOnCurrent("/signup")}
+										href="/signup"
+										className="-m-2 block p-2 font-medium text-gray-900">
+										Create account
+									</Link>
+								</div>
 							</div>
-							<div className="flow-root">
-								<Link
-									onClick={() => closeOnCurrent("/signup")}
-									href="/signup"
-									className="-m-2 block p-2 font-medium text-gray-900">
-									Create account
-								</Link>
+						)}
+						{user && (
+							<div className="mt-3 px-4">
+								<Button className="block w-full bg-red-500" onClick={signOut}>
+									Log out
+								</Button>
 							</div>
-						</div>
+						)}
 					</div>
 				</div>
 			</div>

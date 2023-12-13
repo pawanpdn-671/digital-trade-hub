@@ -11,16 +11,21 @@ import { useCart } from "@/hooks/UseCart";
 import { ScrollArea } from "./ui/scroll-area";
 import CartItem from "./CartItem";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Cart = () => {
 	const { items } = useCart();
 	const itemCount = items?.length;
+	const pathname = usePathname();
+	const pathsToMin = ["/verify-email", "/signup", "/login"];
 
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 
 	useEffect(() => {
 		setIsMounted(true);
 	}, []);
+
+	if (pathsToMin.includes(pathname)) return;
 
 	const cartTotal = items.reduce((total, { product }) => total + product.price, 0);
 	const fee = 1;
