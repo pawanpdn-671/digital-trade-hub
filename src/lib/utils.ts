@@ -58,7 +58,7 @@ export function constructMetadata({
 			creator: "@pawanpdn-671",
 		},
 		icons,
-		metadataBase: new URL("https://digitaltradehub.up.railway.app"),
+		metadataBase: new URL("https://digitaltradehub.vercel.app"),
 		...(noIndex && {
 			robots: {
 				index: false,
