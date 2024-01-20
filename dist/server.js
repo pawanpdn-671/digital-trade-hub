@@ -137,6 +137,7 @@ var start = function () { return __awaiter(void 0, void 0, void 0, function () {
                     router: trpc_1.appRouter,
                     createContext: createContext,
                 }));
+                console.log(process.env.NODE_ENV);
                 app.use(function (req, res) { return (0, next_utils_1.nextHandler)(req, res); });
                 next_utils_1.nextApp.prepare().then(function () {
                     payload.logger.info("nextjs app started");

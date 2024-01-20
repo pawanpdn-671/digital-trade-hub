@@ -50,7 +50,7 @@ function constructMetadata(_a) {
             description: description,
             images: [image],
             creator: "@pawanpdn-671",
-        }, icons: icons, metadataBase: new URL("https://digitaltradehub.up.railway.app") }, (noIndex && {
+        }, icons: icons, metadataBase: new URL("https://digitaltradehub.vercel.app") }, (noIndex && {
         robots: {
             index: false,
             follow: false,
